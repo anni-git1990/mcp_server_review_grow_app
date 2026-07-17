@@ -136,6 +136,7 @@ async function runHttpServer() {
                 'Content-Type': 'text/event-stream',
                 'Cache-Control': 'no-cache, no-transform',
                 Connection: 'keep-alive',
+                'X-Accel-Buffering': 'no', // Disable buffering for reverse proxies like Nginx/Railway
             });
             const transport = new sse_js_1.SSEServerTransport('/messages', res);
             const server = createMcpServer();
