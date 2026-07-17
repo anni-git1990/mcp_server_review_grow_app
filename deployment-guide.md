@@ -37,15 +37,14 @@ Add these variables in Railway:
 ```text
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_REFRESH_TOKEN=your_google_refresh_token
+GOOGLE_REFRESH_TOKEN=your_google_refresh_token (or GOOGLE_TOKEN_JSON)
 MCP_TRANSPORT=http
 PORT=3000
 ```
 
 Important:
-- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, and `GOOGLE_REFRESH_TOKEN` are required for Gmail and Google Docs access.
-- `MCP_TRANSPORT=http` enables the HTTP deployment mode used by Railway.
-- Railway usually injects `PORT` automatically, but setting it explicitly is fine.
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are required.
+- `GOOGLE_REFRESH_TOKEN` (the raw refresh token string) or `GOOGLE_TOKEN_JSON` (the stringified JSON content of `tokens.json` containing the refresh token) is required for Gmail and Google Docs access. If both are set, `GOOGLE_TOKEN_JSON` takes priority.
 
 ## 5. Deploy
 1. Click Deploy.
