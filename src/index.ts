@@ -146,17 +146,15 @@ async function runHttpServer() {
     }
 
     if (req.method === 'GET' && (requestUrl.pathname === '/sse' || requestUrl.pathname === '/mcp')) {
-      res.writeHead(200, {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache, no-transform',
-        Connection: 'keep-alive',
-        'X-Accel-Buffering': 'no', // Disable buffering for reverse proxies like Nginx/Railway
-      });
+      // Set headers on response object (SSEServerTransport will call writeHead internally)
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.setHeader('Cache-Control', 'no-cache, no-transform');
+      res.setHeader('Connection', 'keep-alive');
+      res.setHeader('X-Accel-Buffering', 'no'); // Disable buffering for reverse proxies like Nginx/Railway
 
       const transport = new SSEServerTransport('/messages', res);
       const server = createMcpServer();
       await server.connect(transport);
-      await transport.start();
 
       const sessionId = transport.sessionId;
       sseSessions.set(sessionId, { server, transport });
