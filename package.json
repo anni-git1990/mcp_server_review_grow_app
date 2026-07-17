@@ -1,0 +1,25 @@
+{
+  "name": "google-workspace-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Google Workspace (Gmail & Google Docs)",
+  "main": "dist/index.js",
+  "bin": {
+    "google-workspace-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "google-auth-library": "^9.0.0",
+    "googleapis": "^126.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "rimraf": "^5.0.0"
+  }
+}
