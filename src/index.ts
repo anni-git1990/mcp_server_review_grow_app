@@ -119,6 +119,18 @@ async function runHttpServer() {
   const port = Number(process.env.PORT || 3000);
 
   const httpServer = http.createServer(async (req, res) => {
+    // Add CORS headers for wider client compatibility
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, mcp-session-id, Authorization');
+
+    // Handle CORS preflight OPTIONS requests
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204);
+      res.end();
+      return;
+    }
+
     if (!req.url) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Missing URL' }));
