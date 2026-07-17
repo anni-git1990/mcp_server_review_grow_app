@@ -1,0 +1,17 @@
+# Secrets and local credentials
+client_secret.json
+credential.json
+tokens.json
+
+# Environment files
+.env
+.env.*
+
+# Private keys
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Node dependencies
+node_modules/
